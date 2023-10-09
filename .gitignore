@@ -1,0 +1,115 @@
+# Visual Studio files
+.vs/
+*.suo
+*.user
+*.psess
+*.vsp
+*.vshost.exe
+*.vshost.exe.config
+
+# Build results
+bin/
+obj/
+
+# Resharper files
+_ReSharper*/
+
+# NuGet packages
+*.nupkg
+packages/
+
+# MSTest test Results
+TestResults/
+
+# Build Results of an ATL Project
+[Dd]ebug/
+[Rr]elease/
+x64/
+*_i.c
+*_p.c
+*.ilk
+*.meta
+*.obj
+*.pch
+*.pdb
+*.pgc
+*.pgd
+*.rsp
+*.sbr
+*.tlb
+*.tli
+*.tlh
+*.tmp
+*.log
+*.vspscc
+*.vssscc
+.builds
+*.pidb
+*.svclog
+*.scc
+
+# Chutzpah Test files
+_Chutzpah*
+
+# Visual C++ cache files
+ipch/
+*.aps
+*.ncb
+*.opensdf
+*.sdf
+*.cachefile
+
+# ReSharper
+_ReSharper*/
+
+# GhostDoc plugin setting file
+GhostDoc.ghostrider.xml
+
+# Installshield output folder
+[Ee]xpress/
+
+# DocProject file
+**/*.DocProject
+
+# TeamCity
+_TeamCity*
+
+# DotCover
+*.dotCover
+
+# NCrunch
+_NCrunch_*
+.*crunch*.local.xml
+
+# InstallShield output folder
+[Ee]xpress/
+
+# DocProject file
+**/*.DocProject
+
+# Click-Once files
+publish/
+*.publish.xml
+
+# Publish Web Output
+*.Publish.xml
+
+# Microsoft Azure Build Output
+csx/
+*.build.csdef
+
+# Microsoft Azure Emulator
+ecf/
+rcf/
+
+# Windows Store app package directory
+AppPackages/
+
+# Others
+[Tt]est[Rr]esult*
+*.dbmdl
+*.dbproj.schemaview
+*.jfm
+*.pfx
+*.publishsettings
+node_modules/
