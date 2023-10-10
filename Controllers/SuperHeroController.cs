@@ -18,7 +18,8 @@ namespace superhero.Controllers
     [HttpGet]
     public async Task<ActionResult<List<SuperHero>>> Get()
     {
-      return Ok(await _context.SuperHeroes.ToListAsync());
+      // return super herows with backpacks
+      return Ok(await _context.SuperHeroes.Include(x => x.Backpack).ToListAsync());
     }
 
     [HttpGet("{id}")]
