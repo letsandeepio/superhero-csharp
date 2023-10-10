@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Http;
+using superhero.Data;
 
 namespace superhero.Controllers
 {
@@ -13,11 +14,17 @@ namespace superhero.Controllers
         new SuperHero { Id = 1, Name = "Spiderman 2", FirstName = "Peter", LastName = "Parker", PlaceOfBirth = "New York" },
         new SuperHero { Id = 2, Name = "Batman 2", FirstName = "Bruce", LastName = "Wayne", PlaceOfBirth = "Gotham" },
       };
+    private readonly DataContext _context;
+
+    public SuperHeroController(DataContext context)
+    {
+      _context = context;
+    }
 
     [HttpGet]
     public async Task<ActionResult<List<SuperHero>>> Get()
     {
-      return Ok(heroes);
+      return Ok(await _context.SuperHeroes.ToListAsync());
     }
 
     [HttpGet("{id}")]
