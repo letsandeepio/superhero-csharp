@@ -7,5 +7,4 @@ public class SuperHero
   public string? FirstName { get; set; }
   public string? LastName { get; set; }
   public string? PlaceOfBirth { get; set; }
-  public ICollection<SuperHeroSuperPower>? SuperHeroSuperPowers { get; set; }
 }

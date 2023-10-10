@@ -10,8 +10,6 @@ namespace superhero.Data
 
     public DbSet<SuperHero> SuperHeroes { get; set; }
 
-    public DbSet<SuperPower> SuperPowers { get; set; }
 
-    public DbSet<SuperHeroSuperPower> SuperHeroSuperPowers { get; set; }
   }
 }
