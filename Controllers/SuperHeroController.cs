@@ -20,6 +20,17 @@ namespace superhero.Controllers
       return Ok(heroes);
     }
 
+    [HttpGet("{id}")]
+    public async Task<ActionResult<SuperHero>> Get(int id)
+    {
+      var hero = heroes.FirstOrDefault(x => x.Id == id);
+      if (hero == null)
+      {
+        return NotFound();
+      }
+      return Ok(hero);
+    }
+
     [HttpPost]
     public async Task<ActionResult<List<SuperHero>>> Post(SuperHero hero)
     {
