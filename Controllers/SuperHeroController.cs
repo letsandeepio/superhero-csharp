@@ -37,5 +37,18 @@ namespace superhero.Controllers
       heroes.Add(hero);
       return Ok(heroes);
     }
+
+    [HttpPut]
+    public async Task<ActionResult<List<SuperHero>>> Put(SuperHero hero)
+    {
+      var heroToUpdate = heroes.FirstOrDefault(x => x.Id == hero.Id);
+      if (heroToUpdate == null)
+      {
+        return NotFound();
+      }
+      heroes.Remove(heroToUpdate);
+      heroes.Add(hero);
+      return Ok(heroes);
+    }
   }
 }
