@@ -9,4 +9,5 @@ public class SuperHero
   public string? PlaceOfBirth { get; set; }
   public Backpack? Backpack { get; set; }
   public List<Weapon>? Weapons { get; set; }
+  public List<Faction>? Factions { get; set; }
 }
