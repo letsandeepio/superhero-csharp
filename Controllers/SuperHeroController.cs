@@ -50,5 +50,18 @@ namespace superhero.Controllers
       heroes.Add(hero);
       return Ok(heroes);
     }
+
+    [HttpDelete("{id}")]
+    public async Task<ActionResult<List<SuperHero>>> Delete(int id)
+    {
+      var heroToDelete = heroes.FirstOrDefault(x => x.Id == id);
+      if (heroToDelete == null)
+      {
+        return NotFound();
+      }
+      heroes.Remove(heroToDelete);
+      return Ok(heroes);
+    }
+
   }
 }
