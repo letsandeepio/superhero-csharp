@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using superhero.Models;
 
 namespace superhero.Controllers
 {

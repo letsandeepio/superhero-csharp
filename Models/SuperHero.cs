@@ -1,4 +1,4 @@
-﻿namespace superhero;
+﻿namespace superhero.Models;
 
 public class SuperHero
 {
@@ -7,4 +7,5 @@ public class SuperHero
   public string? FirstName { get; set; }
   public string? LastName { get; set; }
   public string? PlaceOfBirth { get; set; }
+  public Backpack? Backpack { get; set; }
 }

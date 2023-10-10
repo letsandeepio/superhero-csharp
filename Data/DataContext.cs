@@ -1,5 +1,6 @@
 
 
+using superhero.Models;
 namespace superhero.Data
 {
   public class DataContext : DbContext
@@ -9,7 +10,6 @@ namespace superhero.Data
     }
 
     public DbSet<SuperHero> SuperHeroes { get; set; }
-
-
+    public DbSet<Backpack> Backpacks { get; set; }
   }
 }
