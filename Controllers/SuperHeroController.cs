@@ -36,6 +36,9 @@ namespace superhero.Controllers
     [HttpPost]
     public async Task<ActionResult<List<SuperHero>>> Post(SuperHero hero)
     {
+
+      hero.Id = 0;
+
       _context.SuperHeroes.Add(hero);
       await _context.SaveChangesAsync();
 
