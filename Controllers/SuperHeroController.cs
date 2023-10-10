@@ -9,11 +9,6 @@ namespace superhero.Controllers
   public class SuperHeroController : ControllerBase
   {
 
-    private static List<SuperHero> heroes = new List<SuperHero>
-      {
-        new SuperHero { Id = 1, Name = "Spiderman 2", FirstName = "Peter", LastName = "Parker", PlaceOfBirth = "New York" },
-        new SuperHero { Id = 2, Name = "Batman 2", FirstName = "Bruce", LastName = "Wayne", PlaceOfBirth = "Gotham" },
-      };
     private readonly DataContext _context;
 
     public SuperHeroController(DataContext context)
@@ -30,7 +25,7 @@ namespace superhero.Controllers
     [HttpGet("{id}")]
     public async Task<ActionResult<SuperHero>> Get(int id)
     {
-      var hero = heroes.FirstOrDefault(x => x.Id == id);
+      var hero = await _context.SuperHeroes.FindAsync(id);
       if (hero == null)
       {
         return NotFound();
@@ -41,33 +36,40 @@ namespace superhero.Controllers
     [HttpPost]
     public async Task<ActionResult<List<SuperHero>>> Post(SuperHero hero)
     {
-      heroes.Add(hero);
-      return Ok(heroes);
+      _context.SuperHeroes.Add(hero);
+      await _context.SaveChangesAsync();
+
+      return Ok(await _context.SuperHeroes.ToListAsync());
     }
 
     [HttpPut]
     public async Task<ActionResult<List<SuperHero>>> Put(SuperHero hero)
     {
-      var heroToUpdate = heroes.FirstOrDefault(x => x.Id == hero.Id);
+      var heroToUpdate = await _context.SuperHeroes.FindAsync(hero.Id);
       if (heroToUpdate == null)
       {
-        return NotFound();
+        return BadRequest("Hero not found");
       }
-      heroes.Remove(heroToUpdate);
-      heroes.Add(hero);
-      return Ok(heroes);
+
+      _context.Entry(heroToUpdate).CurrentValues.SetValues(hero);
+      await _context.SaveChangesAsync();
+      return Ok(await _context.SuperHeroes.ToListAsync());
     }
 
     [HttpDelete("{id}")]
     public async Task<ActionResult<List<SuperHero>>> Delete(int id)
     {
-      var heroToDelete = heroes.FirstOrDefault(x => x.Id == id);
+      var heroToDelete = await _context.SuperHeroes.FindAsync(id);
+
       if (heroToDelete == null)
       {
-        return NotFound();
+        return BadRequest("Hero not found");
       }
-      heroes.Remove(heroToDelete);
-      return Ok(heroes);
+
+      _context.SuperHeroes.Remove(heroToDelete);
+      await _context.SaveChangesAsync();
+
+      return Ok(await _context.SuperHeroes.ToListAsync());
     }
 
   }
