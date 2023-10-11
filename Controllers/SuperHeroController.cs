@@ -20,7 +20,7 @@ namespace superhero.Controllers
     public async Task<ActionResult<List<SuperHero>>> Get()
     {
       // return super herows with backpacks
-      return Ok(await _context.SuperHeroes.ToListAsync());
+      return Ok(await _context.SuperHeroes.Include(c => c.Weapons).Include(c => c.Backpack).Include(c => c.Factions).ToListAsync());
     }
 
     [HttpGet("{id}")]
