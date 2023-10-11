@@ -24,9 +24,10 @@ namespace superhero.Controllers
     }
 
     [HttpGet("{id}")]
-    public async Task<ActionResult<SuperHero>> Get(int id)
+    public async Task<ActionResult<SuperHero>> GetSuperHeroById(int id)
     {
-      var hero = await _context.SuperHeroes.FindAsync(id);
+      var hero = await _context.SuperHeroes.Include(c => c.Weapons).Include(c => c.Backpack).Include(c => c.Factions).FirstOrDefaultAsync(c => c.Id == id);
+
       if (hero == null)
       {
         return NotFound();
