@@ -51,8 +51,11 @@ namespace superhero.Controllers
 
       var weapons = request.Weapons.Select(w => new Weapon { Name = w.Name, SuperHero = newSuperHero }).ToList();
 
+      var factions = request.Factions.Select(f => new Faction { Name = f.Name, SuperHeroes = new List<SuperHero> { newSuperHero } }).ToList();
+
       newSuperHero.Backpack = backpack;
       newSuperHero.Weapons = weapons;
+      newSuperHero.Factions = factions;
 
       _context.SuperHeroes.Add(newSuperHero);
 
