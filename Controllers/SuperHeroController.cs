@@ -1,4 +1,6 @@
+using System.Reflection.PortableExecutable;
 using Microsoft.AspNetCore.Mvc;
+using superhero.DTOs;
 using superhero.Models;
 
 namespace superhero.Controllers
@@ -19,7 +21,7 @@ namespace superhero.Controllers
     public async Task<ActionResult<List<SuperHero>>> Get()
     {
       // return super herows with backpacks
-      return Ok(await _context.SuperHeroes.Include(x => x.Backpack).ToListAsync());
+      return Ok(await _context.SuperHeroes.ToListAsync());
     }
 
     [HttpGet("{id}")]
@@ -34,15 +36,26 @@ namespace superhero.Controllers
     }
 
     [HttpPost]
-    public async Task<ActionResult<List<SuperHero>>> Post(SuperHero hero)
+    public async Task<ActionResult<List<SuperHero>>> Post(SuperHeroCreateDto request)
     {
 
-      hero.Id = 0;
+      var newSuperHero = new SuperHero
+      {
+        Name = request.name,
+      };
 
-      _context.SuperHeroes.Add(hero);
+      var backpack = new Backpack
+      {
+        Description = request.backpack.Description,
+        SuperHero = newSuperHero
+      };
+
+      newSuperHero.Backpack = backpack;
+
+      _context.SuperHeroes.Add(newSuperHero);
+
       await _context.SaveChangesAsync();
-
-      return Ok(await _context.SuperHeroes.ToListAsync());
+      return Ok(await _context.SuperHeroes.Include(s => s.Backpack).ToListAsync());
     }
 
     [HttpPut]
