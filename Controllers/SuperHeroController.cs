@@ -1,4 +1,3 @@
-using System.Reflection.PortableExecutable;
 using Microsoft.AspNetCore.Mvc;
 using superhero.DTOs;
 using superhero.Models;
@@ -50,12 +49,15 @@ namespace superhero.Controllers
         SuperHero = newSuperHero
       };
 
+      var weapons = request.Weapons.Select(w => new Weapon { Name = w.Name, SuperHero = newSuperHero }).ToList();
+
       newSuperHero.Backpack = backpack;
+      newSuperHero.Weapons = weapons;
 
       _context.SuperHeroes.Add(newSuperHero);
 
       await _context.SaveChangesAsync();
-      return Ok(await _context.SuperHeroes.Include(s => s.Backpack).ToListAsync());
+      return Ok(await _context.SuperHeroes.Include(s => s.Backpack).Include(c => c.Weapons).ToListAsync());
     }
 
     [HttpPut]
